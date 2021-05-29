@@ -25,15 +25,15 @@ namespace ft
 		typedef 			Iterator<value_type>			iterator;
 		typedef 			Iterator<const value_type>		const_iterator;
 
-		explicit	list();
-					list(list const &l);
-		explicit	list(size_type n, const value_type& val = value_type());
-		template < typename InputIterator >
-					list(InputIterator first, InputIterator second);
+		explicit list();
+		list(list const &l);
 		template < typename U >
-					list<U>(U n, U val);
-					~list();
+		list<U>(U n, U val);
+		explicit list(size_type n, const value_type& val = value_type());
+		template < typename InputIterator >
+		list(InputIterator first, InputIterator second);
 		list		&operator=(list const &l);
+		~list();
 
 		iterator	begin();
 		iterator	end();
