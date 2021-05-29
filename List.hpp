@@ -12,7 +12,24 @@ using std::endl;
 namespace ft
 {
 	template < typename T, typename Alloc = std::allocator<T> >
-	class List
+	template < typename U >
+	list<T>::class Node
+	{
+	public:
+		Node	*next;
+		Node	*prev;
+		U		content;
+
+		explicit Node(N cont);
+		~Node();
+	private:
+		Node();
+		Node(Node const &n);
+		Node	&operator=(Node const &n);
+	}
+
+	template < typename T, typename Alloc = std::allocator<T> >
+	class list
 	{
 	public:
 		typedef 			T 								value_type;
