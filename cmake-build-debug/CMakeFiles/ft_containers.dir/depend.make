@@ -4,4 +4,6 @@
 CMakeFiles/ft_containers.dir/main.cpp.o: ../main.cpp
 CMakeFiles/ft_containers.dir/main.cpp.o: ../stack/Stack.hpp
 CMakeFiles/ft_containers.dir/main.cpp.o: ../stack/Stack.ipp
+CMakeFiles/ft_containers.dir/main.cpp.o: ../vector/Vector.hpp
+CMakeFiles/ft_containers.dir/main.cpp.o: ../vector/VectorIterator.hpp
 

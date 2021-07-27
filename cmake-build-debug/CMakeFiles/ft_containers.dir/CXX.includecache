@@ -11,6 +11,10 @@ iostream
 -
 stack/Stack.hpp
 /Users/mchantel/Desktop/ft_containers/stack/Stack.hpp
+vector/Vector.hpp
+/Users/mchantel/Desktop/ft_containers/vector/Vector.hpp
+vector
+-
 
 /Users/mchantel/Desktop/ft_containers/stack/Stack.hpp
 iostream
@@ -21,4 +25,20 @@ Stack.ipp
 /Users/mchantel/Desktop/ft_containers/stack/Stack.ipp
 
 /Users/mchantel/Desktop/ft_containers/stack/Stack.ipp
+
+/Users/mchantel/Desktop/ft_containers/vector/Vector.hpp
+memory
+-
+cstddef
+-
+limits
+-
+stdexcept
+-
+VectorIterator.hpp
+/Users/mchantel/Desktop/ft_containers/vector/VectorIterator.hpp
+
+/Users/mchantel/Desktop/ft_containers/vector/VectorIterator.hpp
+cstddef
+-
 
