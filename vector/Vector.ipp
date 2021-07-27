@@ -2,8 +2,6 @@
 
 namespace ft {
 
-	typedef typename Vector<T, Allocator>::
-
 	/// Coplien's
 
 	template <typename T, typename Allocator>
@@ -96,40 +94,61 @@ namespace ft {
 
 	/// Capacity
 
-	size_type size() const {return (this->_size); }
+	template <typename T, class Allocator>
+	typename Vector<T, Allocator>::size_type
+		Vector<T, Allocator>::size() const {
+			return (this->_size);
+		}
 
-	size_type max_size() const {return (std::numeric_limits<size_type>::max() / sizeof(value_type)); }
+	template <typename T, class Allocator>
+	typename Vector<T, Allocator>::size_type
+		Vector<T, Allocator>::max_size() const {
+			return (std::numeric_limits<size_type>::max() / sizeof(value_type));
+		}
 
-	void resize(size_type n, value_type val = value_type()) {
-		if (n <= this->_size) {
-			for (size_type i = n; i < this->_size; i++)
+	template <typename T, class Allocator>
+	void
+	    Vector<T, Allocator>::resize(size_type n,
+										  value_type val) {
+			if (n <= this->_size) {
+				for (size_type i = n; i < this->_size; i++)
+					this->_alloc.destroy(this->_data + i);
+			}
+			else {
+				if (n > this->_capacity)
+					reserve((n > this->_capacity * 2) ? n : this->_capacity * 2);
+				for (size_type i = this->_size; i < n; i++)
+					this->_alloc.construct(this->_data + i, val);
+			}
+			this->_size = n;
+		}
+
+	template <typename T, class Allocator>
+	typename Vector<T, Allocator>::size_type
+	    Vector<T, Allocator>::capacity() const {
+			return (this->_capacity);
+		}
+
+	template <typename T, class Allocator>
+	bool
+	    Vector<T, Allocator>::empty() const {
+			return (!this->_size);
+		}
+
+	template <typename T, class Allocator>
+	void
+	    Vector<T, Allocator>::reserve(size_type n) {
+			if (n <= this->_capacity)
+				return ;
+			pointer newData = this->_alloc.allocate(n);
+			for (size_type i = 0; i < this->_size; i++)
+				this->_alloc.construct(newData + i, this->_data[i]);
+			for (size_type i = 0; i < this->_size; i++)
 				this->_alloc.destroy(this->_data + i);
+			if (this->_capacity)
+				this->_alloc.deallocate(this->_data, this->_capacity);
+			this->_capacity = n;
+			this->_data = newData;
 		}
-		else {
-			if (n > this->_capacity)
-				reserve((n > this->_capacity * 2) ? n : this->_capacity * 2);
-			for (size_type i = this->_size; i < n; i++)
-				this->_alloc.construct(this->_data + i, val);
-		}
-		this->_size = n;
-	}
-
-	size_type capacity() const {return (this->_capacity); }
-
-	bool empty() const {return (!this->_size); }
-
-	void reserve(size_type n) {
-		if (n <= this->_capacity)
-			return ;
-		pointer newData = this->_alloc.allocate(n);
-		for (size_type i = 0; i < this->_size; i++)
-			this->_alloc.construct(newData + i, this->_data[i]);
-		for (size_type i = 0; i < this->_size; i++)
-			this->_alloc.destroy(this->_data + i);
-		if (this->_capacity)
-			this->_alloc.deallocate(this->_data, this->_capacity);
-		this->_capacity = n;
-		this->_data = newData;
-	}
 
 }
