@@ -2,8 +2,24 @@
 
 #include <cstddef>
 
-namespace ft
-{
+namespace ft {
+
+	template <typename T>
+	class VectorIterator;
+
+	template <typename T>
+	class VectorReverseIterator;
+
+	template <typename T>
+	class VectorReverseIterator;
+
+	template <typename T>
+	class VectorConstReverseIterator;
+
+}
+
+namespace ft {
+
 	template <typename T>
 	class VectorIterator
 	{
@@ -20,93 +36,48 @@ namespace ft
 		pointer _ptr;
 
 	public :
-		explicit VectorIterator(pointer ptr = NULL)
-				: _ptr(ptr)
-		{ }
+		explicit VectorIterator(pointer ptr = NULL);
 
-		VectorIterator(const VectorIterator& it)
-				: _ptr(it._ptr)
-		{ }
+		VectorIterator(const VectorIterator& it);
 
-		VectorIterator& operator= (const VectorIterator& it)
-		{
-			this->_ptr = it._ptr;
-			return (*this);
-		}
+		VectorIterator& operator= (const VectorIterator& it);
 
-		virtual ~VectorIterator()
-		{ }
+		virtual ~VectorIterator();
 
-		bool operator== (const VectorIterator& it) const
-		{ return (this->_ptr == it._ptr); }
+		///
+		bool operator== (const VectorIterator& it) const;
 
-		bool operator!= (const VectorIterator& it) const
-		{ return (!(*this == it)); }
+		bool operator!= (const VectorIterator& it) const;
 
-		reference operator* ()
-		{ return (*this->_ptr); }
+		bool operator< (const VectorIterator& it) const;
 
-		pointer operator-> ()
-		{ return (this->_ptr); }
+		bool operator> (const VectorIterator& it) const;
 
-		VectorIterator& operator++ ()
-		{
-			this->_ptr++;
-			return (*this);
-		}
+		bool operator<= (const VectorIterator& it) const;
 
-		VectorIterator operator++ (int)
-		{
-			VectorIterator it(*this);
-			this->_ptr++;
-			return (it);
-		}
+		bool operator>= (const VectorIterator& it) const;
 
-		VectorIterator& operator-- ()
-		{
-			this->_ptr--;
-			return (*this);
-		}
+		reference operator* ();
 
-		VectorIterator operator-- (int)
-		{
-			VectorIterator it(*this);
-			this->_ptr--;
-			return (it);
-		}
+		pointer operator-> ();
 
-		VectorIterator operator+ (size_type n) const
-		{ return (VectorIterator(this->_ptr + n));}
+		VectorIterator& operator++ ();
 
-		VectorIterator operator- (size_type n) const
-		{ return (VectorIterator(this->_ptr - n));}
+		VectorIterator operator++ (int);
 
-		bool operator< (const VectorIterator& it) const
-		{ return (this->_ptr < it._ptr); }
+		VectorIterator& operator-- ();
 
-		bool operator> (const VectorIterator& it) const
-		{ return (it < *this); }
+		VectorIterator operator-- (int);
 
-		bool operator<= (const VectorIterator& it) const
-		{ return (!(it < *this)); }
+		VectorIterator operator+ (size_type n) const;
 
-		bool operator>= (const VectorIterator& it) const
-		{ return (!(*this < it)); }
+		VectorIterator operator- (size_type n) const;
 
-		VectorIterator& operator+= (size_type n)
-		{
-			this->_ptr += n;
-			return (*this);
-		}
+		VectorIterator& operator+= (size_type n);
 
-		VectorIterator& operator-= (size_type n)
-		{
-			this->_ptr -= n;
-			return (*this);
-		}
+		VectorIterator& operator-= (size_type n);
 
-		reference operator[] (size_type n)
-		{ return (*(this->_ptr + n)); }
+		reference operator[] (size_type n);
 	};
 
 	template <typename T>
@@ -125,93 +96,48 @@ namespace ft
 		pointer _ptr;
 
 	public :
-		explicit VectorReverseIterator(pointer ptr = NULL)
-				: _ptr(ptr)
-		{ }
+		explicit VectorReverseIterator(pointer ptr = NULL);
 
-		VectorReverseIterator(const VectorReverseIterator& it)
-				: _ptr(it._ptr)
-		{ }
+		VectorReverseIterator(const VectorReverseIterator& it);
 
-		VectorReverseIterator& operator= (const VectorReverseIterator& it)
-		{
-			this->_ptr = it._ptr;
-			return (*this);
-		}
+		VectorReverseIterator& operator= (const VectorReverseIterator& it);
 
-		virtual ~VectorReverseIterator()
-		{ }
+		virtual ~VectorReverseIterator();
 
-		bool operator== (const VectorReverseIterator& it) const
-		{ return (this->_ptr == it._ptr); }
+		///
+		bool operator== (const VectorReverseIterator& it) const;
 
-		bool operator!= (const VectorReverseIterator& it) const
-		{ return (!(*this == it)); }
+		bool operator!= (const VectorReverseIterator& it) const;
 
-		reference operator* ()
-		{ return (*this->_ptr); }
+		bool operator< (const VectorReverseIterator& it) const;
 
-		pointer operator-> ()
-		{ return (this->_ptr); }
+		bool operator> (const VectorReverseIterator& it) const;
 
-		VectorReverseIterator& operator++ ()
-		{
-			this->_ptr--;
-			return (*this);
-		}
+		bool operator<= (const VectorReverseIterator& it) const;
 
-		VectorReverseIterator operator++ (int)
-		{
-			VectorReverseIterator it(*this);
-			this->_ptr--;
-			return (it);
-		}
+		bool operator>= (const VectorReverseIterator& it) const;
 
-		VectorReverseIterator& operator-- ()
-		{
-			this->_ptr++;
-			return (*this);
-		}
+		reference operator* ();
 
-		VectorReverseIterator operator-- (int)
-		{
-			VectorReverseIterator it(*this);
-			this->_ptr++;
-			return (it);
-		}
+		pointer operator-> ();
 
-		VectorReverseIterator operator+ (size_type n) const
-		{ return (VectorReverseIterator(this->_ptr - n));}
+		VectorReverseIterator& operator++ ();
 
-		VectorReverseIterator operator- (size_type n) const
-		{ return (VectorReverseIterator(this->_ptr + n));}
+		VectorReverseIterator operator++ (int);
 
-		bool operator< (const VectorReverseIterator& it) const
-		{ return (this->_ptr < it._ptr); }
+		VectorReverseIterator& operator-- ();
 
-		bool operator> (const VectorReverseIterator& it) const
-		{ return (it < *this); }
+		VectorReverseIterator operator-- (int);
 
-		bool operator<= (const VectorReverseIterator& it) const
-		{ return (!(it < *this)); }
+		VectorReverseIterator operator+ (size_type n) const;
 
-		bool operator>= (const VectorReverseIterator& it) const
-		{ return (!(*this < it)); }
+		VectorReverseIterator operator- (size_type n) const;
 
-		VectorReverseIterator& operator+= (size_type n)
-		{
-			this->_ptr -= n;
-			return (*this);
-		}
+		VectorReverseIterator& operator+= (size_type n);
 
-		VectorReverseIterator& operator-= (size_type n)
-		{
-			this->_ptr += n;
-			return (*this);
-		}
+		VectorReverseIterator& operator-= (size_type n);
 
-		reference operator[] (size_type n)
-		{ return (*(this->_ptr + n)); }
+		reference operator[] (size_type n);
 	};
 
 	template <typename T>
@@ -223,29 +149,19 @@ namespace ft
 		typedef value_type*			pointer;
 		typedef const value_type&	const_reference;
 
-		explicit VectorConstIterator(pointer ptr = NULL)
-		{ this->_ptr = ptr; }
+		explicit VectorConstIterator(pointer ptr = NULL);
 
-		VectorConstIterator(const VectorIterator<T>& it)
-		{ this->_ptr = it._ptr; }
+		VectorConstIterator(const VectorIterator<T>& it);
 
-		VectorConstIterator& operator= (const VectorIterator<T>& it)
-		{
-			this->_ptr = it._ptr;
-			return (*this);
-		}
+		VectorConstIterator& operator= (const VectorIterator<T>& it);
 
-		virtual ~VectorConstIterator()
-		{ }
+		virtual ~VectorConstIterator();
 
-		const_reference operator* () const
-		{ return (*(this->_ptr)); }
+		const_reference operator* () const;
 
-		const_reference operator-> () const
-		{ return (this->_ptr); }
+		const_reference operator-> () const;
 
-		const_reference operator[] (size_type index) const
-		{ return (*(this->_ptr + index)); }
+		const_reference operator[] (size_type index) const;
 	};
 
 	template <typename T>
@@ -257,28 +173,20 @@ namespace ft
 		typedef value_type*			pointer;
 		typedef const value_type&	const_reference;
 
-		explicit VectorConstReverseIterator(pointer ptr = NULL)
-		{ this->_ptr = ptr; }
+		explicit VectorConstReverseIterator(pointer ptr = NULL);
 
-		VectorConstReverseIterator(const VectorReverseIterator<T>& it)
-		{ this->_ptr = it._ptr; }
+		VectorConstReverseIterator(const VectorIterator<T>& it);
 
-		VectorConstReverseIterator& operator= (const VectorReverseIterator<T>& it)
-		{
-			this->_ptr = it._ptr;
-			return (*this);
-		}
+		VectorConstReverseIterator& operator= (const VectorIterator<T>& it);
 
-		virtual ~VectorConstReverseIterator()
-		{ }
+		virtual ~VectorConstReverseIterator();
 
-		const_reference operator* () const
-		{ return (*(this->_ptr)); }
+		const_reference operator* () const;
 
-		const_reference operator-> () const
-		{ return (this->_ptr); }
+		const_reference operator-> () const;
 
-		const_reference operator[] (size_type index) const
-		{ return (*(this->_ptr + index)); }
+		const_reference operator[] (size_type index) const;
 	};
 }
+
+#include "VectorIterator.ipp"

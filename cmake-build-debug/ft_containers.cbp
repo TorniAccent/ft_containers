@@ -83,9 +83,6 @@
 		<Unit filename="/Users/mchantel/Desktop/ft_containers/main.cpp">
 			<Option target="ft_containers"/>
 		</Unit>
-		<Unit filename="/Users/mchantel/Desktop/ft_containers/vector/Vector.hpp">
-			<Option target="ft_containers"/>
-		</Unit>
 		<Unit filename="/Users/mchantel/Desktop/ft_containers/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

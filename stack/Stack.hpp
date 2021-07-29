@@ -62,11 +62,11 @@ namespace ft {
 
 		friend bool operator!= <> (const Stack<T, Container> &lhs, const Stack<T, Container> &rhs);
 
-		friend bool operator< <> (const Stack<T, Container> &lhs, const Stack<T, Container> &rhs);
+		friend bool operator<  <> (const Stack<T, Container> &lhs, const Stack<T, Container> &rhs);
 
 		friend bool operator<= <> (const Stack<T, Container> &lhs, const Stack<T, Container> &rhs);
 
-		friend bool operator> <> (const Stack<T, Container> &lhs, const Stack<T, Container> &rhs);
+		friend bool operator>  <> (const Stack<T, Container> &lhs, const Stack<T, Container> &rhs);
 
 		friend bool operator>= <> (const Stack<T, Container> &lhs, const Stack<T, Container> &rhs);
 
