@@ -30,26 +30,9 @@ namespace ft
 		size_type		_size;
 		size_type		_capacity;
 
-		void reallocateData(size_type n) {
-			if (this->_capacity)
-				this->_alloc.deallocate(this->_data, this->_capacity);
-			this->_capacity = n;
-			this->_data = this->_alloc.allocate(this->_capacity);
-		}
+		void reallocateData(size_type n);
 
-		size_type iteratorPos(iterator i) {
-			if (i == iterator(NULL))
-				return (0);
-			size_type pos = 0;
-			iterator it = begin();
-			while (it != end()) {
-				if (it == i)
-					return (pos);
-				pos++;
-				it++;
-			}
-			return (pos);
-		}
+		size_type iteratorPos(iterator i);
 
 	public :
 

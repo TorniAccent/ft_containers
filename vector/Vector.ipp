@@ -2,6 +2,31 @@
 
 namespace ft {
 
+	/// private
+
+	template <typename T, typename Allocator>
+	void Vector<T, Allocator>::reallocateData(size_type n) {
+		if (this->_capacity)
+			this->_alloc.deallocate(this->_data, this->_capacity);
+		this->_capacity = n;
+		this->_data = this->_alloc.allocate(this->_capacity);
+	}
+
+	template <typename T, typename Allocator>
+	typename Vector<T, Allocator>::size_type Vector<T, Allocator>::iteratorPos(iterator i) {
+		if (i == iterator(NULL))
+			return (0);
+		size_type pos = 0;
+		iterator it = begin();
+		while (it != end()) {
+			if (it == i)
+				return (pos);
+			pos++;
+			it++;
+		}
+		return (pos);
+	}
+
 	/// Coplien's
 
 	template <typename T, typename Allocator>
