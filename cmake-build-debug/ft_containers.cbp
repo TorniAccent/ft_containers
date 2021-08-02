@@ -83,6 +83,27 @@
 		<Unit filename="/Users/mchantel/Desktop/ft_containers/main.cpp">
 			<Option target="ft_containers"/>
 		</Unit>
+		<Unit filename="/Users/mchantel/Desktop/ft_containers/map/Map.hpp">
+			<Option target="ft_containers"/>
+		</Unit>
+		<Unit filename="/Users/mchantel/Desktop/ft_containers/map/Map.ipp">
+			<Option target="ft_containers"/>
+		</Unit>
+		<Unit filename="/Users/mchantel/Desktop/ft_containers/map/MapIterator.hpp">
+			<Option target="ft_containers"/>
+		</Unit>
+		<Unit filename="/Users/mchantel/Desktop/ft_containers/vector/Vector.hpp">
+			<Option target="ft_containers"/>
+		</Unit>
+		<Unit filename="/Users/mchantel/Desktop/ft_containers/vector/Vector.ipp">
+			<Option target="ft_containers"/>
+		</Unit>
+		<Unit filename="/Users/mchantel/Desktop/ft_containers/vector/VectorIterator.hpp">
+			<Option target="ft_containers"/>
+		</Unit>
+		<Unit filename="/Users/mchantel/Desktop/ft_containers/vector/VectorIterator.ipp">
+			<Option target="ft_containers"/>
+		</Unit>
 		<Unit filename="/Users/mchantel/Desktop/ft_containers/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
