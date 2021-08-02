@@ -8,10 +8,12 @@ namespace ft {
 	template  < typename Key,
 				typename T,
 				typename Compare = std::less<Key>,
-				typename Allocator = std::allocator<std::pair<const Key, T> >
+				typename Allocator = std::allocator<ft::Pair<const Key, T> >
 				>
 	class Map;
 
+	template <typename T1, typename T2>
+	struct Pair;
 }
 
 # include "../iterator/MapIterator.hpp"
@@ -23,7 +25,7 @@ namespace ft {
 	public:
 		typedef 		 Key												key_type;
 		typedef 		 T													mapped_type;
-		typedef 		 std::pair<const key_type, mapped_type>				value_type;
+		typedef 		 ft::Pair<const key_type, mapped_type>				value_type;
 		typedef 		 Compare											key_compare;
 		typedef 		 Allocator											allocator_type;
 		typedef	typename allocator_type::reference							reference;
@@ -95,7 +97,7 @@ namespace ft {
 
 		/// Modifiers
 
-		std::pair<iterator, bool> insert(const value_type& val);
+		ft::Pair<iterator, bool> insert(const value_type& val);
 		iterator insert(iterator position, const value_type& val);
 		template <typename InputIterator>
 		void insert(InputIterator first, InputIterator last);
@@ -119,8 +121,8 @@ namespace ft {
 		const_iterator lower_bound(const key_type& k) const;
 		iterator upper_bound(const key_type& k);
 		const_iterator upper_bound(const key_type& k) const;
-		std::pair<iterator,iterator> equal_range(const key_type& k);
-		std::pair<const_iterator,const_iterator> equal_range(const key_type& k) const;
+		ft::Pair<iterator,iterator> equal_range(const key_type& k);
+		ft::Pair<const_iterator,const_iterator> equal_range(const key_type& k) const;
 		allocator_type get_allocator() const;
 
 	};
@@ -145,15 +147,58 @@ namespace ft {
 
 namespace ft {
 
-	//	template <typename T1, typename T2>
-	//	struct pair {
-	//	private:
-	//		T1 first;
-	//		T2 second;
-	//	public:
-	//		typename ft::pair<T1, T2>::first first_type;
-	//
-	//	};
+	template <typename T1, typename T2>
+	struct Pair {
+		T1 first;
+		T2 second;
+
+		typename T1 first_type;
+		typename T2 second_type;
+
+		Pair() {
+		}
+		template <class T1, class T2>
+		Pair(Pair<T1, T2> const & copy) : first(copy.first), second(copy.second) {
+		}
+		Pair(first_type const & a, second_type const & b) : first(a), second(b) {
+		}
+		~Pair {
+		}
+		Pair &operator=(Pair const & copy) {
+			first = copy.first;
+			second = copy.second;
+			return *this;
+		}
+
+		template <typename T1, typename T2>
+		bool operator== (Pair<T1,T2> const & lhs, Pair<T1,T2> const & rhs)
+		{ return lhs.first==rhs.first && lhs.second==rhs.second; }
+
+		template <typename T1, typename T2>
+		bool operator!= (Pair<T1,T2> const & lhs, Pair<T1,T2> const & rhs)
+		{ return !(lhs == rhs); }
+
+		template <typename T1, typename T2>
+		bool operator<  (Pair<T1,T2> const & lhs, Pair<T1,T2> const & rhs)
+		{ return lhs.first < rhs.first || (!(lhs.first > rhs.first) && lhs.second < rhs.second); }
+
+		template <typename T1, typename T2>
+		bool operator<= (Pair<T1,T2> const & lhs, Pair<T1,T2> const & rhs)
+		{ return !(rhs < lhs); }
+
+		template <typename T1, typename T2>
+		bool operator>  (Pair<T1,T2> const & lhs, Pair<T1,T2> const & rhs)
+		{ return rhs < lhs; }
+
+		template <typename T1, typename T2>
+		bool operator>= (Pair<T1,T2> const & lhs, Pair<T1,T2> const & rhs)
+		{ return !(lhs < rhs); }
+	};
+
+	template <class T1,class T2>
+	Pair<T1,T2> make_pair(T1 x, T2 y) {
+		return ( Pair<T1,T2>(x,y) );
+	}
 
 }
 

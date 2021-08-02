@@ -92,6 +92,9 @@
 		<Unit filename="/Users/mchantel/Desktop/ft_containers/map/MapIterator.hpp">
 			<Option target="ft_containers"/>
 		</Unit>
+		<Unit filename="/Users/mchantel/Desktop/ft_containers/map/MapIterator.ipp">
+			<Option target="ft_containers"/>
+		</Unit>
 		<Unit filename="/Users/mchantel/Desktop/ft_containers/vector/Vector.hpp">
 			<Option target="ft_containers"/>
 		</Unit>

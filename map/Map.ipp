@@ -399,10 +399,10 @@ namespace ft {
 		iterator	res;
 
 		if (this->_size == 0)
-			res = this->insert(this->begin(), std::pair<key_type, mapped_type>(k, mapped_type()));
+			res = this->insert(this->begin(), ft::Pair<key_type, mapped_type>(k, mapped_type()));
 		res = this->find(k);
 		if (res == this->end())
-			res = this->insert(res, std::pair<key_type, mapped_type>(k, mapped_type()));
+			res = this->insert(res, ft::Pair<key_type, mapped_type>(k, mapped_type()));
 
 		return res->second;
 	}
@@ -410,7 +410,7 @@ namespace ft {
 	/// Modifiers
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	std::pair<iterator, bool>
+	ft::Pair<iterator, bool>
 	Map<Key, T, Compare, Allocator>::insert(const value_type& val) {
 		map_node<key_type, mapped_type>	*x;
 		map_node<key_type, mapped_type>	*y;
@@ -424,7 +424,7 @@ namespace ft {
 			else if (this->_my_comp(val.first, x->data.first))
 				x = x->left;
 			else
-				return (std::pair<iterator, bool>(iterator(x), false));
+				return (ft::Pair<iterator, bool>(iterator(x), false));
 		}
 		map_node<key_type, mapped_type>	*new_el = new map_node<key_type, mapped_type>;
 		new_el->root = y;
@@ -445,15 +445,15 @@ namespace ft {
 		if (new_el->root == NULL) {
 			new_el->color = BLACK;
 			this->_linked_outside_nodes();
-			return (std::pair<iterator, bool>(iterator(new_el), true));
+			return (ft::Pair<iterator, bool>(iterator(new_el), true));
 		}
 		if (new_el->root->root == NULL) {
 			this->_linked_outside_nodes();
-			return (std::pair<iterator, bool>(iterator(new_el), true));
+			return (ft::Pair<iterator, bool>(iterator(new_el), true));
 		}
 		this->_insertFix(new_el);
 		this->_linked_outside_nodes();
-		return (std::pair<iterator, bool>(iterator(new_el), true));
+		return (ft::Pair<iterator, bool>(iterator(new_el), true));
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
@@ -666,9 +666,9 @@ namespace ft {
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	typename Map<Key, T, Compare, Allocator>::std::pair<const_iterator,const_iterator>
+	typename Map<Key, T, Compare, Allocator>::ft::Pair<const_iterator,const_iterator>
 	Map<Key, T, Compare, Allocator>::equal_range(const key_type& k) const {
-		typedef std::pair<const_iterator, const_iterator> _p;
+		typedef ft::Pair<const_iterator, const_iterator> _p;
 
 		const_iterator	res = this->end();
 		map_node<key_type, mapped_type>	*r = this->_root;
@@ -691,9 +691,9 @@ namespace ft {
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	typename Map<Key, T, Compare, Allocator>::std::pair<iterator,iterator>
+	typename Map<Key, T, Compare, Allocator>::ft::Pair<iterator,iterator>
 	Map<Key, T, Compare, Allocator>::equal_range(const key_type& k) {
-		typedef std::pair<iterator, iterator> _p;
+		typedef ft::Pair<iterator, iterator> _p;
 
 		iterator	res = this->end();
 		map_node<key_type, mapped_type>	*r = this->_root;
