@@ -12,7 +12,7 @@ namespace ft {
 	class VectorReverseIterator;
 
 	template <typename T>
-	class VectorReverseIterator;
+	class VectorConstIterator;
 
 	template <typename T>
 	class VectorConstReverseIterator;
