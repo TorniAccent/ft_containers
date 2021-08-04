@@ -43,12 +43,7 @@ namespace ft {
 		map_node<Key, T>	*_p_data;
 		map_node<Key, T>	_null_node;
 
-		void	_init_null_node() {
-			this->_null_node.color = NON_COLOR;
-			this->_null_node.left = NULL;
-			this->_null_node.right = NULL;
-			this->_null_node.root = NULL;
-		}
+		void	_init_null_node();
 
 	public:
 		friend class map<Key, T>;
@@ -59,119 +54,21 @@ namespace ft {
 		typedef ft::pair<Key, T>&				reference;
 		typedef std::bidirectional_iterator_tag	iterator_category;
 
-		MapIterator() {
-			this->_init_null_node();
-		}
+		MapIterator();
+		MapIterator(const MapIterator &iter);
+		MapIterator(map_node<Key, T> *node);
+		MapIterator(map_node<Key, T> &node);
+		MapIterator&	operator=(const MapIterator &iter);
+		~MapIterator();
 
-		MapIterator(const MapIterator &iter) {
-			this->_p_data = iter._p_data;
-			this->_init_null_node();
-		}
-
-
-		MapIterator(map_node<Key, T> *node) {
-			this->_p_data = node;
-			this->_init_null_node();
-		}
-
-		MapIterator(map_node<Key, T> &node) {
-			this->_p_data = node;
-			this->_init_null_node();
-		}
-
-		MapIterator&	operator=(const MapIterator &iter) {
-			this->_p_data = iter._p_data;
-			this->_init_null_node();
-			return (*this);
-		}
-
-		~MapIterator() {}
-
-		bool			operator==(const MapIterator &iter) {
-			if (this->_p_data == iter._p_data)
-				return (true);
-			else
-				return (false);
-		}
-
-		bool			operator!=(const MapIterator &iter) {
-			if (this->_p_data != iter._p_data)
-				return (true);
-			else
-				return (false);
-		}
-
-		reference 		operator*() {
-			return (this->_p_data->data);
-		}
-
-		pointer			operator->() {
-			return (&this->_p_data->data);
-		}
-
-		MapIterator				&operator++() {
-			map_node<Key, T>	*tmp;
-			map_node<Key, T>	*tmp2;
-
-			tmp = this->_p_data;
-			if (tmp->right->color != this->_null_node.color) {
-				tmp = tmp->right;
-				if (tmp->color == TAIL_COLOR) {
-					*this = tmp;
-					return (*this);
-				}
-				while (tmp->left->color != this->_null_node.color)
-					tmp = tmp->left;
-			} else if (tmp->right->color == this->_null_node.color && tmp->root && tmp->data.first > tmp->root->data.first) {
-				tmp2 = tmp->root;
-				while (tmp->data.first > tmp2->data.first)
-					tmp2 = tmp2->root;
-				tmp = tmp2;
-			} else if (tmp->right->color == this->_null_node.color && tmp->root && tmp->data.first < tmp->root->data.first) {
-				tmp = tmp->root;
-			} else if (tmp->right->color != this->_null_node.color)
-				tmp = tmp->right;
-			this->_p_data = tmp;
-			return (*this);
-		}
-
-		MapIterator				operator++(int) {
-			MapIterator	temp(this->_p_data);
-
-			++(*this);
-			return (temp);
-		}
-
-		MapIterator				&operator--() {
-			map_node<Key, T>	*tmp;
-
-			tmp = this->_p_data;
-			if (tmp->color == TAIL_COLOR)
-				tmp = tmp->root;
-			else if (tmp->left->color != this->_null_node.color) {
-				tmp = tmp->left;
-				while (tmp->right->color != this->_null_node.color)
-					tmp = tmp->right;
-			}
-			else if (tmp->left->color == this->_null_node.color && tmp->root && tmp->data.first > tmp->root->data.first) {
-				tmp = tmp->root;
-			}
-			else if (tmp->left->color == this->_null_node.color && tmp->root && tmp->root->root) {
-				while (tmp->root && tmp->data.first < tmp->root->data.first)
-					tmp = tmp->root;
-				tmp = tmp->root;
-			}
-			else if (tmp->left->color != this->_null_node.color)
-				tmp = tmp->left;
-			this->_p_data = tmp;
-			return (*this);
-		}
-
-		MapIterator				operator--(int) {
-			MapIterator	tmp(this->_p_data);
-			--(*this);
-			return (tmp);
-		}
+		bool			operator==(const MapIterator &iter);
+		bool			operator!=(const MapIterator &iter);
+		reference 		operator*();
+		pointer			operator->();
+		MapIterator				&operator++();
+		MapIterator				operator++(int);
+		MapIterator				&operator--();
+		MapIterator				operator--(int);
 	};
 
 	template <typename Key, typename T>
@@ -183,35 +80,15 @@ namespace ft {
 		typedef const ft::pair<Key, T>&			reference;
 		typedef std::bidirectional_iterator_tag	iterator_category;
 
-		MapConstIterator(): MapIterator<Key, T>() {}
+		MapConstIterator();
+		MapConstIterator(const MapConstIterator &iter);
+		MapConstIterator(map_node<Key, T> *node);
+		MapConstIterator(map_node<Key, T> &node);
+		MapConstIterator&	operator=(const MapConstIterator &iter);
+		~MapConstIterator();
 
-		MapConstIterator(const MapConstIterator &iter): MapIterator<Key, T>(iter) {}
-
-		MapConstIterator(map_node<Key, T> *node) {
-			this->_p_data = node;
-			this->_init_null_node();
-		}
-
-		MapConstIterator(map_node<Key, T> &node) {
-			this->_p_data = node;
-			this->_init_null_node();
-		}
-
-		MapConstIterator&	operator=(const MapConstIterator &iter) {
-			this->_p_data = iter._p_data;
-			this->_init_null_node();
-			return (*this);
-		}
-
-		~MapConstIterator() {}
-
-		reference 		operator*() const {
-			return (this->_p_data->data);
-		}
-
-		pointer			operator->() const {
-			return (&this->_p_data->data);
-		}
+		reference 		operator*() const;
+		pointer			operator->() const;
 	};
 
 	template <typename Iterator>
@@ -227,76 +104,25 @@ namespace ft {
 		typedef 		 Iterator						iterator_type;
 		typedef typename Iterator::iterator_category	iterator_category;
 
-		ReverseIterator(): _curr() {}
-
-		explicit ReverseIterator(iterator_type it): _curr(it) {}
-
+		ReverseIterator();
+		explicit ReverseIterator(iterator_type it);
 		template <typename Iter>
-		ReverseIterator(const ReverseIterator<Iter>& rev_it): _curr(rev_it.base()) {}
+		explicit ReverseIterator(const ReverseIterator<Iter>& rev_it);
+		ReverseIterator&	operator=(const ReverseIterator &iter);
+		~ReverseIterator();
 
-		ReverseIterator&	operator=(const ReverseIterator &iter) {
-			this->_curr = iter.base();
-			return (*this);
-		}
-
-		~ReverseIterator() {}
-
-		iterator_type base() const {
-			return (this->_curr);
-		}
-
-		reference operator*() const {
-			Iterator	tmp(this->_curr);
-			return (*--tmp);
-		}
-
-		ReverseIterator& operator++() {
-			--this->_curr;
-			return (*this);
-		}
-
-		ReverseIterator operator++(int) {
-			ReverseIterator tmp(*this);
-			--this->_curr;
-			return tmp;
-		}
-
-		ReverseIterator& operator--() {
-			++this->_curr;
-			return (*this);
-		}
-
-		ReverseIterator operator--(int) {
-			ReverseIterator tmp = *this;
-			++this->_curr;
-			return tmp;
-		}
-
-		pointer operator->() const {
-			return &(operator*());
-		}
-
-		ReverseIterator	operator+ (difference_type n) const {
-			return (ReverseIterator(this->_curr - n));
-		}
-
-		ReverseIterator&	operator+= (difference_type n) {
-			this->_curr -= n;
-			return (*this);
-		}
-
-		ReverseIterator	operator- (difference_type n) const {
-			return (ReverseIterator(this->_curr + n));
-		}
-
-		ReverseIterator&	operator-= (difference_type n) {
-			this->_curr += n;
-			return (*this);
-		}
-
-		reference operator[] (difference_type n) const {
-			return *(*this + n);
-		}
+		iterator_type base() const;
+		reference operator*() const;
+		ReverseIterator& operator++();
+		ReverseIterator operator++(int);
+		ReverseIterator& operator--();
+		ReverseIterator operator--(int);
+		pointer operator->() const;
+		ReverseIterator	operator+ (difference_type n) const;
+		ReverseIterator&	operator+= (difference_type n);
+		ReverseIterator	operator- (difference_type n) const;
+		ReverseIterator&	operator-= (difference_type n);
+		reference operator[] (difference_type n) const;
 	};
 
 	template <typename Iterator>
