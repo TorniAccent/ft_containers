@@ -4,8 +4,13 @@
 # include <memory>
 
 namespace ft {
-	
-	enum Colors;
+
+	enum Colors {
+		RED,
+		BLACK,
+		NON_COLOR,
+		TAIL_COLOR,
+		};
 	
 	template <typename Key, typename T>
 	struct map_node;
@@ -14,7 +19,7 @@ namespace ft {
 	class MapIterator;
 
 	template <typename Key, typename T>
-	class MapConstIterator: public MapIterator<Key, T>;
+	class MapConstIterator;
 
 	template <typename Iterator>
 	class ReverseIterator;
@@ -22,13 +27,6 @@ namespace ft {
 }
 
 namespace ft {
-
-	enum Colors {
-		RED,
-		BLACK,
-		NON_COLOR,
-		TAIL_COLOR,
-	};
 
 	template <typename Key, typename T>
 	struct map_node {

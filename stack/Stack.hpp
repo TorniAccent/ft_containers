@@ -9,22 +9,16 @@ namespace ft {
 
 	template<typename T, typename Container>
 	void swap(Stack<T, Container> &x, Stack<T, Container> &y);
-
 	template<typename T, typename Container>
 	bool operator==(const Stack<T, Container> &lhs, const Stack<T, Container> &rhs);
-
 	template<typename T, typename Container>
 	bool operator!=(const Stack<T, Container> &lhs, const Stack<T, Container> &rhs);
-
 	template<typename T, typename Container>
 	bool operator<(const Stack<T, Container> &lhs, const Stack<T, Container> &rhs);
-
 	template<typename T, typename Container>
 	bool operator<=(const Stack<T, Container> &lhs, const Stack<T, Container> &rhs);
-
 	template<typename T, typename Container>
 	bool operator>(const Stack<T, Container> &lhs, const Stack<T, Container> &rhs);
-
 	template<typename T, typename Container>
 	bool operator>=(const Stack<T, Container> &lhs, const Stack<T, Container> &rhs);
 

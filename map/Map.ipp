@@ -7,7 +7,7 @@ namespace ft {
 
 	/// Algorithms
 	template < typename Key, typename T, typename Compare, typename Allocator>
-	typename Map<Key, T, Compare, Allocator>::map_node<key_type, mapped_type> *
+	map_node<typename Map<Key, T, Compare, Allocator>::key_type, typename Map<Key, T, Compare, Allocator>::mapped_type> *
 	Map<Key, T, Compare, Allocator>::_get_begin_node() {
 		map_node<key_type, mapped_type>	*tmp;
 
@@ -19,7 +19,7 @@ namespace ft {
 
 
 	template < typename Key, typename T, typename Compare, typename Allocator>
-	typename Map<Key, T, Compare, Allocator>::map_node<key_type, mapped_type>	*
+	map_node<typename Map<Key, T, Compare, Allocator>::key_type, typename Map<Key, T, Compare, Allocator>::mapped_type> *
 	Map<Key, T, Compare, Allocator>::_get_end_node() {
 		map_node<key_type, mapped_type>	*tmp;
 
@@ -154,7 +154,7 @@ namespace ft {
 
 
 	template < typename Key, typename T, typename Compare, typename Allocator>
-	map_node<key_type, mapped_type>	*
+	map_node<typename Map<Key, T, Compare, Allocator>::key_type, typename Map<Key, T, Compare, Allocator>::mapped_type>	*
 	Map<Key, T, Compare, Allocator>::_minimum(map_node<key_type, mapped_type> *node) {
 		while (node->left->color != this->_null_node.color)
 			node = node->left;
@@ -410,7 +410,7 @@ namespace ft {
 	/// Modifiers
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	ft::Pair<iterator, bool>
+	ft::Pair<typename Map<Key, T, Compare, Allocator>::iterator, bool>
 	Map<Key, T, Compare, Allocator>::insert(const value_type& val) {
 		map_node<key_type, mapped_type>	*x;
 		map_node<key_type, mapped_type>	*y;
@@ -666,7 +666,7 @@ namespace ft {
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	typename Map<Key, T, Compare, Allocator>::ft::Pair<const_iterator,const_iterator>
+	ft::Pair<typename Map<Key, T, Compare, Allocator>::const_iterator, typename Map<Key, T, Compare, Allocator>::const_iterator>
 	Map<Key, T, Compare, Allocator>::equal_range(const key_type& k) const {
 		typedef ft::Pair<const_iterator, const_iterator> _p;
 
@@ -691,7 +691,7 @@ namespace ft {
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	typename Map<Key, T, Compare, Allocator>::ft::Pair<iterator,iterator>
+	ft::Pair<typename Map<Key, T, Compare, Allocator>::iterator, typename Map<Key, T, Compare, Allocator>::iterator>
 	Map<Key, T, Compare, Allocator>::equal_range(const key_type& k) {
 		typedef ft::Pair<iterator, iterator> _p;
 
