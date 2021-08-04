@@ -1,4 +1,6 @@
-#pragma once
+#ifndef FT_CONTAINERS_STACK_HPP
+#define FT_CONTAINERS_STACK_HPP
+
 # include <iostream>
 # include <deque>
 
@@ -33,39 +35,29 @@ namespace ft {
 		typedef 		Container container_type;
 		typedef 		size_t size_type;
 
-		container_type _container;
+		container_type c;
 
 	public:
 		explicit stack(const container_type &container = container_type());
-
 		bool empty() const;
-
 		size_type size() const;
-
 		value_type &top();
-
 		const value_type &top() const;
-
 		void push(const value_type &val);
-
 		void pop();
 
 		friend void swap <> (stack<T, Container> &x, stack<T, Container> &y);
-
 		friend bool operator== <> (const stack<T, Container> &lhs, const stack<T, Container> &rhs);
-
 		friend bool operator!= <> (const stack<T, Container> &lhs, const stack<T, Container> &rhs);
-
 		friend bool operator<  <> (const stack<T, Container> &lhs, const stack<T, Container> &rhs);
-
 		friend bool operator<= <> (const stack<T, Container> &lhs, const stack<T, Container> &rhs);
-
 		friend bool operator>  <> (const stack<T, Container> &lhs, const stack<T, Container> &rhs);
-
 		friend bool operator>= <> (const stack<T, Container> &lhs, const stack<T, Container> &rhs);
 
 	};
 
 }
+
+#endif
 
 # include "Stack.ipp"

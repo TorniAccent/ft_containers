@@ -1,4 +1,5 @@
-#pragma once
+#ifndef FT_CONTAINERS_VECTORITERATOR_IPP
+#define FT_CONTAINERS_VECTORITERATOR_IPP
 
 namespace ft {
 
@@ -305,3 +306,5 @@ namespace ft {
 		return (*(this->_ptr + index));
 	}
 }
+
+#endif

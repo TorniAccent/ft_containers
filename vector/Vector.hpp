@@ -1,4 +1,5 @@
-#pragma once
+#ifndef FT_CONTAINERS_VECTOR_HPP
+#define FT_CONTAINERS_VECTOR_HPP
 
 #include <memory>
 #include <cstddef>
@@ -166,5 +167,7 @@ namespace ft
 	void swap(vector<T, Alloc>& x, vector<T, Alloc>& y);
 
 }
+
+#endif
 
 #include "Vector.ipp"

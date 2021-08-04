@@ -1,4 +1,5 @@
-#pragma once
+#ifndef FT_CONTAINERS_MAPITERATOR_IPP
+#define FT_CONTAINERS_MAPITERATOR_IPP
 
 namespace ft {
 
@@ -283,3 +284,5 @@ namespace ft {
 	}
 
 }
+
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef FT_CONTAINERS_MAPITERATOR_HPP
+#define FT_CONTAINERS_MAPITERATOR_HPP
 
 # include <iostream>
 # include <memory>
@@ -167,5 +168,7 @@ namespace ft {
 		return (rhs.base() - lhs.base());
 	}
 }
+
+#endif
 
 #include "MapIterator.ipp"

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef FT_CONTAINERS_MAP_HPP
+#define FT_CONTAINERS_MAP_HPP
 
 # include <iostream>
 # include <memory>
@@ -6,6 +7,7 @@
 namespace ft {
 	template <typename T1, typename T2>
 	struct pair;
+
 }
 
 namespace ft {
@@ -201,5 +203,7 @@ namespace ft {
 		}
 
 }
+
+#endif
 
 #include "Map.ipp"

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef FT_CONTAINERS_MAP_IPP
+#define FT_CONTAINERS_MAP_IPP
 
 #include "Map.hpp"
 
@@ -721,3 +722,5 @@ namespace ft {
 		return (allocator_type());
 	}
 }
+
+#endif

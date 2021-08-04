@@ -1,4 +1,5 @@
-#pragma once
+#ifndef FT_CONTAINERS_VECTOR_IPP
+#define FT_CONTAINERS_VECTOR_IPP
 
 namespace ft {
 
@@ -408,3 +409,5 @@ namespace ft {
 	}
 
 }
+
+#endif

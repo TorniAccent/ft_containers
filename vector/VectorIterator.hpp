@@ -1,4 +1,5 @@
-#pragma once
+#ifndef FT_CONTAINERS_VECTORITERATOR_HPP
+#define FT_CONTAINERS_VECTORITERATOR_HPP
 
 #include <cstddef>
 
@@ -188,5 +189,7 @@ namespace ft {
 		const_reference operator[] (size_type index) const;
 	};
 }
+
+#endif
 
 #include "VectorIterator.ipp"
