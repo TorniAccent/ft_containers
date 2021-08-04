@@ -30,7 +30,7 @@ namespace ft {
 
 	template <typename Key, typename T>
 	struct map_node {
-		ft::Pair<Key, T>	data;
+		ft::pair<Key, T>	data;
 		Colors				color;
 		map_node			*left;
 		map_node			*right;
@@ -51,12 +51,12 @@ namespace ft {
 		}
 
 	public:
-		friend class Map<Key, T>;
+		friend class map<Key, T>;
 
-		typedef ft::Pair<Key, T>				value_type;
+		typedef ft::pair<Key, T>				value_type;
 		typedef ptrdiff_t 						difference_type;
-		typedef ft::Pair<Key, T>*				pointer;
-		typedef ft::Pair<Key, T>&				reference;
+		typedef ft::pair<Key, T>*				pointer;
+		typedef ft::pair<Key, T>&				reference;
 		typedef std::bidirectional_iterator_tag	iterator_category;
 
 		MapIterator() {
@@ -177,10 +177,10 @@ namespace ft {
 	template <typename Key, typename T>
 	class MapConstIterator: public MapIterator<Key, T> {
 	public:
-		typedef ft::Pair<Key, T>	value_type;
+		typedef ft::pair<Key, T>	value_type;
 		typedef ptrdiff_t 	difference_type;
-		typedef const ft::Pair<Key, T>*			pointer;
-		typedef const ft::Pair<Key, T>&			reference;
+		typedef const ft::pair<Key, T>*			pointer;
+		typedef const ft::pair<Key, T>&			reference;
 		typedef std::bidirectional_iterator_tag	iterator_category;
 
 		MapConstIterator(): MapIterator<Key, T>() {}

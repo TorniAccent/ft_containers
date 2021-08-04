@@ -5,29 +5,29 @@
 namespace ft {
 
 	template<typename T, typename Container = std::deque <T> >
-	class Stack;
+	class stack;
 
 	template<typename T, typename Container>
-	void swap(Stack<T, Container> &x, Stack<T, Container> &y);
+	void swap(stack<T, Container> &x, stack<T, Container> &y);
 	template<typename T, typename Container>
-	bool operator==(const Stack<T, Container> &lhs, const Stack<T, Container> &rhs);
+	bool operator==(const stack<T, Container> &lhs, const stack<T, Container> &rhs);
 	template<typename T, typename Container>
-	bool operator!=(const Stack<T, Container> &lhs, const Stack<T, Container> &rhs);
+	bool operator!=(const stack<T, Container> &lhs, const stack<T, Container> &rhs);
 	template<typename T, typename Container>
-	bool operator<(const Stack<T, Container> &lhs, const Stack<T, Container> &rhs);
+	bool operator<(const stack<T, Container> &lhs, const stack<T, Container> &rhs);
 	template<typename T, typename Container>
-	bool operator<=(const Stack<T, Container> &lhs, const Stack<T, Container> &rhs);
+	bool operator<=(const stack<T, Container> &lhs, const stack<T, Container> &rhs);
 	template<typename T, typename Container>
-	bool operator>(const Stack<T, Container> &lhs, const Stack<T, Container> &rhs);
+	bool operator>(const stack<T, Container> &lhs, const stack<T, Container> &rhs);
 	template<typename T, typename Container>
-	bool operator>=(const Stack<T, Container> &lhs, const Stack<T, Container> &rhs);
+	bool operator>=(const stack<T, Container> &lhs, const stack<T, Container> &rhs);
 
 }
 
 namespace ft {
 
 	template<typename T, typename Container>
-	class Stack {
+	class stack {
 	public:
 		typedef 		T value_type;
 		typedef 		Container container_type;
@@ -36,7 +36,7 @@ namespace ft {
 		container_type _container;
 
 	public:
-		explicit Stack(const container_type &container = container_type());
+		explicit stack(const container_type &container = container_type());
 
 		bool empty() const;
 
@@ -50,19 +50,19 @@ namespace ft {
 
 		void pop();
 
-		friend void swap <> (Stack<T, Container> &x, Stack<T, Container> &y);
+		friend void swap <> (stack<T, Container> &x, stack<T, Container> &y);
 
-		friend bool operator== <> (const Stack<T, Container> &lhs, const Stack<T, Container> &rhs);
+		friend bool operator== <> (const stack<T, Container> &lhs, const stack<T, Container> &rhs);
 
-		friend bool operator!= <> (const Stack<T, Container> &lhs, const Stack<T, Container> &rhs);
+		friend bool operator!= <> (const stack<T, Container> &lhs, const stack<T, Container> &rhs);
 
-		friend bool operator<  <> (const Stack<T, Container> &lhs, const Stack<T, Container> &rhs);
+		friend bool operator<  <> (const stack<T, Container> &lhs, const stack<T, Container> &rhs);
 
-		friend bool operator<= <> (const Stack<T, Container> &lhs, const Stack<T, Container> &rhs);
+		friend bool operator<= <> (const stack<T, Container> &lhs, const stack<T, Container> &rhs);
 
-		friend bool operator>  <> (const Stack<T, Container> &lhs, const Stack<T, Container> &rhs);
+		friend bool operator>  <> (const stack<T, Container> &lhs, const stack<T, Container> &rhs);
 
-		friend bool operator>= <> (const Stack<T, Container> &lhs, const Stack<T, Container> &rhs);
+		friend bool operator>= <> (const stack<T, Container> &lhs, const stack<T, Container> &rhs);
 
 	};
 

@@ -7,8 +7,8 @@ namespace ft {
 
 	/// Algorithms
 	template < typename Key, typename T, typename Compare, typename Allocator>
-	map_node<typename Map<Key, T, Compare, Allocator>::key_type, typename Map<Key, T, Compare, Allocator>::mapped_type> *
-	Map<Key, T, Compare, Allocator>::_get_begin_node() {
+	map_node<typename map<Key, T, Compare, Allocator>::key_type, typename map<Key, T, Compare, Allocator>::mapped_type> *
+	map<Key, T, Compare, Allocator>::_get_begin_node() {
 		map_node<key_type, mapped_type>	*tmp;
 
 		tmp = this->_root;
@@ -19,8 +19,8 @@ namespace ft {
 
 
 	template < typename Key, typename T, typename Compare, typename Allocator>
-	map_node<typename Map<Key, T, Compare, Allocator>::key_type, typename Map<Key, T, Compare, Allocator>::mapped_type> *
-	Map<Key, T, Compare, Allocator>::_get_end_node() {
+	map_node<typename map<Key, T, Compare, Allocator>::key_type, typename map<Key, T, Compare, Allocator>::mapped_type> *
+	map<Key, T, Compare, Allocator>::_get_end_node() {
 		map_node<key_type, mapped_type>	*tmp;
 
 		tmp = this->_root;
@@ -32,7 +32,7 @@ namespace ft {
 
 	template < typename Key, typename T, typename Compare, typename Allocator>
 	void
-	Map<Key, T, Compare, Allocator>::_null_node_with_color(map_node<key_type, mapped_type> *node, Colors color) {
+	map<Key, T, Compare, Allocator>::_null_node_with_color(map_node<key_type, mapped_type> *node, Colors color) {
 		node->color = color;
 		node->left = NULL;
 		node->right = NULL;
@@ -42,7 +42,7 @@ namespace ft {
 
 	template < typename Key, typename T, typename Compare, typename Allocator>
 	void
-	Map<Key, T, Compare, Allocator>::_init(const key_compare& comp, const allocator_type& alloc) {
+	map<Key, T, Compare, Allocator>::_init(const key_compare& comp, const allocator_type& alloc) {
 		this->_my_comp = comp;
 		this->_my_alloc = alloc;
 		this->_size = 0;
@@ -57,7 +57,7 @@ namespace ft {
 
 	template < typename Key, typename T, typename Compare, typename Allocator>
 	void
-	Map<Key, T, Compare, Allocator>::_insertFix(map_node<key_type, mapped_type> *k) {
+	map<Key, T, Compare, Allocator>::_insertFix(map_node<key_type, mapped_type> *k) {
 		map_node<key_type, mapped_type>	*tmp;
 
 		while (k->root->color == RED) {
@@ -106,7 +106,7 @@ namespace ft {
 
 	template < typename Key, typename T, typename Compare, typename Allocator>
 	void
-	Map<Key, T, Compare, Allocator>::leftRotate(map_node<key_type, mapped_type> *x) {
+	map<Key, T, Compare, Allocator>::leftRotate(map_node<key_type, mapped_type> *x) {
 		map_node<key_type, mapped_type> *y = x->right;
 
 		x->right = y->left;
@@ -126,7 +126,7 @@ namespace ft {
 
 	template < typename Key, typename T, typename Compare, typename Allocator>
 	void
-	Map<Key, T, Compare, Allocator>::rootRotate(map_node<key_type, mapped_type> *x) {
+	map<Key, T, Compare, Allocator>::rootRotate(map_node<key_type, mapped_type> *x) {
 		map_node<key_type, mapped_type> *y = x->left;
 		x->left = y->right;
 		if (y->right->color != this->_null_node.color)
@@ -145,7 +145,7 @@ namespace ft {
 
 	template < typename Key, typename T, typename Compare, typename Allocator>
 	void
-	Map<Key, T, Compare, Allocator>::_linked_outside_nodes() {
+	map<Key, T, Compare, Allocator>::_linked_outside_nodes() {
 		this->_begin_node->root = this->_get_begin_node();
 		this->_begin_node->root->left = this->_begin_node;
 		this->_end_node->root = this->_get_end_node();
@@ -154,8 +154,8 @@ namespace ft {
 
 
 	template < typename Key, typename T, typename Compare, typename Allocator>
-	map_node<typename Map<Key, T, Compare, Allocator>::key_type, typename Map<Key, T, Compare, Allocator>::mapped_type>	*
-	Map<Key, T, Compare, Allocator>::_minimum(map_node<key_type, mapped_type> *node) {
+	map_node<typename map<Key, T, Compare, Allocator>::key_type, typename map<Key, T, Compare, Allocator>::mapped_type>	*
+	map<Key, T, Compare, Allocator>::_minimum(map_node<key_type, mapped_type> *node) {
 		while (node->left->color != this->_null_node.color)
 			node = node->left;
 		return (node);
@@ -164,7 +164,7 @@ namespace ft {
 
 	template < typename Key, typename T, typename Compare, typename Allocator>
 	void
-	Map<Key, T, Compare, Allocator>::_rbTransplant(map_node<key_type, mapped_type> *u, map_node<key_type, mapped_type> *v) {
+	map<Key, T, Compare, Allocator>::_rbTransplant(map_node<key_type, mapped_type> *u, map_node<key_type, mapped_type> *v) {
 		if (u->root == NULL)
 			this->_root = v;
 		else if (u == u->root->left)
@@ -177,7 +177,7 @@ namespace ft {
 
 	template < typename Key, typename T, typename Compare, typename Allocator>
 	void
-	Map<Key, T, Compare, Allocator>::_deleteFix(map_node<key_type, mapped_type> *x) {
+	map<Key, T, Compare, Allocator>::_deleteFix(map_node<key_type, mapped_type> *x) {
 		map_node<key_type, mapped_type>	*s;
 		while (x != this->_root && (x->color == BLACK || x->color == this->_null_node.color || x->color == TAIL_COLOR) ) {
 			if (x == x->root->left) {
@@ -240,7 +240,7 @@ namespace ft {
 
 	template < typename Key, typename T, typename Compare, typename Allocator>
 	void
-	Map<Key, T, Compare, Allocator>::_delete_node(key_type data) {
+	map<Key, T, Compare, Allocator>::_delete_node(key_type data) {
 		map_node<key_type, mapped_type>	*z;
 		map_node<key_type, mapped_type>	*x, *y;
 		int	y_orig_color;
@@ -290,19 +290,19 @@ namespace ft {
 	/// Coplien's
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	Map<Key, T, Compare, Allocator>::Map(const key_compare& comp, const allocator_type& alloc) {
+	map<Key, T, Compare, Allocator>::map(const key_compare& comp, const allocator_type& alloc) {
 		this->_init(comp, alloc);
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
 	template <typename InputIterator>
-	Map<Key, T, Compare, Allocator>::Map(InputIterator first, InputIterator last, const key_compare& comp, const allocator_type& alloc) {
+	map<Key, T, Compare, Allocator>::map(InputIterator first, InputIterator last, const key_compare& comp, const allocator_type& alloc) {
 		this->_init(comp, alloc);
 		this->insert(first, last);
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	Map<Key, T, Compare, Allocator>::Map(const Map& x) {
+	map<Key, T, Compare, Allocator>::map(const map& x) {
 		this->_init(x._my_comp, x._my_alloc);
 		this->_size = 0;
 		if (this != &x)
@@ -310,11 +310,11 @@ namespace ft {
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	Map<Key, T, Compare, Allocator>::~Map() {
+	map<Key, T, Compare, Allocator>::~map() {
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	Map<Key, T, Compare, Allocator> & Map<Key, T, Compare, Allocator>::operator=(const Map& x) {
+	map<Key, T, Compare, Allocator> & map<Key, T, Compare, Allocator>::operator=(const map& x) {
 		this->clear();
 		this->_my_comp = x._my_comp;
 		this->_my_alloc = x._my_alloc;
@@ -325,49 +325,49 @@ namespace ft {
 	/// Iterators
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	typename Map<Key, T, Compare, Allocator>::iterator
-	Map<Key, T, Compare, Allocator>::begin() {
+	typename map<Key, T, Compare, Allocator>::iterator
+	map<Key, T, Compare, Allocator>::begin() {
 		return(iterator(this->_begin_node->root));
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	typename Map<Key, T, Compare, Allocator>::const_iterator
-	Map<Key, T, Compare, Allocator>::begin() const {
+	typename map<Key, T, Compare, Allocator>::const_iterator
+	map<Key, T, Compare, Allocator>::begin() const {
 		return (const_iterator(this->_begin_node->root));
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	typename Map<Key, T, Compare, Allocator>::iterator
-	Map<Key, T, Compare, Allocator>::end() {
+	typename map<Key, T, Compare, Allocator>::iterator
+	map<Key, T, Compare, Allocator>::end() {
 		return (iterator(this->_end_node));
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	typename Map<Key, T, Compare, Allocator>::const_iterator
-	Map<Key, T, Compare, Allocator>::end() const {
+	typename map<Key, T, Compare, Allocator>::const_iterator
+	map<Key, T, Compare, Allocator>::end() const {
 		return (const_iterator(this->_end_node));
 	}
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	typename Map<Key, T, Compare, Allocator>::reverse_iterator
-	Map<Key, T, Compare, Allocator>::rbegin() {
+	typename map<Key, T, Compare, Allocator>::reverse_iterator
+	map<Key, T, Compare, Allocator>::rbegin() {
 		return (reverse_iterator(this->end()));
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	typename Map<Key, T, Compare, Allocator>::const_reverse_iterator
-	Map<Key, T, Compare, Allocator>::rbegin() const {
+	typename map<Key, T, Compare, Allocator>::const_reverse_iterator
+	map<Key, T, Compare, Allocator>::rbegin() const {
 		return (reverse_iterator(this->end()));
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	typename Map<Key, T, Compare, Allocator>::reverse_iterator
-	Map<Key, T, Compare, Allocator>::rend() {
+	typename map<Key, T, Compare, Allocator>::reverse_iterator
+	map<Key, T, Compare, Allocator>::rend() {
 		return (reverse_iterator(this->begin()));
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	typename Map<Key, T, Compare, Allocator>::const_reverse_iterator
-	Map<Key, T, Compare, Allocator>::rend() const {
+	typename map<Key, T, Compare, Allocator>::const_reverse_iterator
+	map<Key, T, Compare, Allocator>::rend() const {
 		return (reverse_iterator(this->begin()));
 	}
 
@@ -375,34 +375,34 @@ namespace ft {
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
 	bool
-	Map<Key, T, Compare, Allocator>::empty() const {
+	map<Key, T, Compare, Allocator>::empty() const {
 		return (this->_size == 0);
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	typename Map<Key, T, Compare, Allocator>::size_type
-	Map<Key, T, Compare, Allocator>::size() const {
+	typename map<Key, T, Compare, Allocator>::size_type
+	map<Key, T, Compare, Allocator>::size() const {
 		return (this->_size);
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	typename Map<Key, T, Compare, Allocator>::size_type
-	Map<Key, T, Compare, Allocator>::max_size() const {
+	typename map<Key, T, Compare, Allocator>::size_type
+	map<Key, T, Compare, Allocator>::max_size() const {
 		return (std::numeric_limits<size_t>::max() / sizeof(map_node<key_type, mapped_type>));
 	}
 
 	/// Element access
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	typename Map<Key, T, Compare, Allocator>::mapped_type &
-	Map<Key, T, Compare, Allocator>::operator[](const key_type& k) {
+	typename map<Key, T, Compare, Allocator>::mapped_type &
+	map<Key, T, Compare, Allocator>::operator[](const key_type& k) {
 		iterator	res;
 
 		if (this->_size == 0)
-			res = this->insert(this->begin(), ft::Pair<key_type, mapped_type>(k, mapped_type()));
+			res = this->insert(this->begin(), ft::pair<key_type, mapped_type>(k, mapped_type()));
 		res = this->find(k);
 		if (res == this->end())
-			res = this->insert(res, ft::Pair<key_type, mapped_type>(k, mapped_type()));
+			res = this->insert(res, ft::pair<key_type, mapped_type>(k, mapped_type()));
 
 		return res->second;
 	}
@@ -410,8 +410,8 @@ namespace ft {
 	/// Modifiers
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	ft::Pair<typename Map<Key, T, Compare, Allocator>::iterator, bool>
-	Map<Key, T, Compare, Allocator>::insert(const value_type& val) {
+	ft::pair<typename map<Key, T, Compare, Allocator>::iterator, bool>
+	map<Key, T, Compare, Allocator>::insert(const value_type& val) {
 		map_node<key_type, mapped_type>	*x;
 		map_node<key_type, mapped_type>	*y;
 
@@ -424,7 +424,7 @@ namespace ft {
 			else if (this->_my_comp(val.first, x->data.first))
 				x = x->left;
 			else
-				return (ft::Pair<iterator, bool>(iterator(x), false));
+				return (ft::pair<iterator, bool>(iterator(x), false));
 		}
 		map_node<key_type, mapped_type>	*new_el = new map_node<key_type, mapped_type>;
 		new_el->root = y;
@@ -445,20 +445,20 @@ namespace ft {
 		if (new_el->root == NULL) {
 			new_el->color = BLACK;
 			this->_linked_outside_nodes();
-			return (ft::Pair<iterator, bool>(iterator(new_el), true));
+			return (ft::pair<iterator, bool>(iterator(new_el), true));
 		}
 		if (new_el->root->root == NULL) {
 			this->_linked_outside_nodes();
-			return (ft::Pair<iterator, bool>(iterator(new_el), true));
+			return (ft::pair<iterator, bool>(iterator(new_el), true));
 		}
 		this->_insertFix(new_el);
 		this->_linked_outside_nodes();
-		return (ft::Pair<iterator, bool>(iterator(new_el), true));
+		return (ft::pair<iterator, bool>(iterator(new_el), true));
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	typename Map<Key, T, Compare, Allocator>::iterator
-	Map<Key, T, Compare, Allocator>::insert(iterator position, const value_type& val) {
+	typename map<Key, T, Compare, Allocator>::iterator
+	map<Key, T, Compare, Allocator>::insert(iterator position, const value_type& val) {
 		position = insert(val).first;
 		return (position);
 	}
@@ -466,28 +466,28 @@ namespace ft {
 	template <typename Key, typename T, typename Compare, typename Allocator>
 	template <typename InputIterator>
 	void
-	Map<Key, T, Compare, Allocator>::insert(InputIterator first, InputIterator last) {
+	map<Key, T, Compare, Allocator>::insert(InputIterator first, InputIterator last) {
 		for (; first != last; first++)
 			insert(*first);
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
 	void
-	Map<Key, T, Compare, Allocator>::erase(iterator position) {
+	map<Key, T, Compare, Allocator>::erase(iterator position) {
 		if (position != this->end())
 			this->_delete_node(position->first);
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	typename Map<Key, T, Compare, Allocator>::size_type
-	Map<Key, T, Compare, Allocator>::erase(const key_type& k) {
+	typename map<Key, T, Compare, Allocator>::size_type
+	map<Key, T, Compare, Allocator>::erase(const key_type& k) {
 		this->_delete_node(k);
 		return (this->_size);
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
 	void
-	Map<Key, T, Compare, Allocator>::erase(iterator first, iterator last) {
+	map<Key, T, Compare, Allocator>::erase(iterator first, iterator last) {
 		if (first == this->end())
 			return ;
 		iterator	next;
@@ -504,7 +504,7 @@ namespace ft {
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
 	void
-	Map<Key, T, Compare, Allocator>::swap (Map& x) {
+	map<Key, T, Compare, Allocator>::swap (map& x) {
 		map_node<key_type, mapped_type>	*tmp_node, *tmp_begin, *tmp_end;
 		size_type	tmp_size;
 
@@ -524,7 +524,7 @@ namespace ft {
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
 	void
-	Map<Key, T, Compare, Allocator>::clear() {
+	map<Key, T, Compare, Allocator>::clear() {
 		for (; this->_size != 0;) {
 			this->_delete_node(this->_root->data.first);
 		}
@@ -535,22 +535,22 @@ namespace ft {
 	/// Observers
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	typename Map<Key, T, Compare, Allocator>::key_compare
-	Map<Key, T, Compare, Allocator>::key_comp() const {
+	typename map<Key, T, Compare, Allocator>::key_compare
+	map<Key, T, Compare, Allocator>::key_comp() const {
 		return (key_compare());
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	typename Map<Key, T, Compare, Allocator>::value_compare
-	Map<Key, T, Compare, Allocator>::value_comp() const {
+	typename map<Key, T, Compare, Allocator>::value_compare
+	map<Key, T, Compare, Allocator>::value_comp() const {
 		return (value_comp());
 	}
 
 	/// Operations
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	typename Map<Key, T, Compare, Allocator>::iterator
-	Map<Key, T, Compare, Allocator>::find(const key_type& k) {
+	typename map<Key, T, Compare, Allocator>::iterator
+	map<Key, T, Compare, Allocator>::find(const key_type& k) {
 		map_node<key_type, mapped_type>	*tmp;
 
 		tmp = this->_root;
@@ -569,8 +569,8 @@ namespace ft {
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	typename Map<Key, T, Compare, Allocator>::const_iterator
-	Map<Key, T, Compare, Allocator>::find(const key_type& k) const {
+	typename map<Key, T, Compare, Allocator>::const_iterator
+	map<Key, T, Compare, Allocator>::find(const key_type& k) const {
 		map_node<key_type, mapped_type>	*tmp;
 
 		tmp = this->_root;
@@ -589,8 +589,8 @@ namespace ft {
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	typename Map<Key, T, Compare, Allocator>::size_type
-	Map<Key, T, Compare, Allocator>::count(const key_type& k) const {
+	typename map<Key, T, Compare, Allocator>::size_type
+	map<Key, T, Compare, Allocator>::count(const key_type& k) const {
 		if (find(k) != this->end())
 			return (1);
 		else
@@ -598,8 +598,8 @@ namespace ft {
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	typename Map<Key, T, Compare, Allocator>::iterator
-	Map<Key, T, Compare, Allocator>::lower_bound(const key_type& k) {
+	typename map<Key, T, Compare, Allocator>::iterator
+	map<Key, T, Compare, Allocator>::lower_bound(const key_type& k) {
 		map_node<key_type, mapped_type>	*r = this->_root;
 		iterator	res = this->end();
 
@@ -615,8 +615,8 @@ namespace ft {
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	typename Map<Key, T, Compare, Allocator>::const_iterator
-	Map<Key, T, Compare, Allocator>::lower_bound(const key_type& k) const {
+	typename map<Key, T, Compare, Allocator>::const_iterator
+	map<Key, T, Compare, Allocator>::lower_bound(const key_type& k) const {
 		map_node<key_type, mapped_type>	*r = this->_root;
 		const_iterator	res = this->end();
 
@@ -632,8 +632,8 @@ namespace ft {
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	typename Map<Key, T, Compare, Allocator>::iterator
-	Map<Key, T, Compare, Allocator>::upper_bound(const key_type& k) {
+	typename map<Key, T, Compare, Allocator>::iterator
+	map<Key, T, Compare, Allocator>::upper_bound(const key_type& k) {
 		map_node<key_type, mapped_type>	*r = this->_root;
 		iterator	res = this->end();
 
@@ -649,8 +649,8 @@ namespace ft {
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	typename Map<Key, T, Compare, Allocator>::const_iterator
-	Map<Key, T, Compare, Allocator>::upper_bound(const key_type& k) const {
+	typename map<Key, T, Compare, Allocator>::const_iterator
+	map<Key, T, Compare, Allocator>::upper_bound(const key_type& k) const {
 		map_node<key_type, mapped_type>	*r = this->_root;
 		const_iterator	res = this->end();
 
@@ -666,9 +666,9 @@ namespace ft {
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	ft::Pair<typename Map<Key, T, Compare, Allocator>::const_iterator, typename Map<Key, T, Compare, Allocator>::const_iterator>
-	Map<Key, T, Compare, Allocator>::equal_range(const key_type& k) const {
-		typedef ft::Pair<const_iterator, const_iterator> _p;
+	ft::pair<typename map<Key, T, Compare, Allocator>::const_iterator, typename map<Key, T, Compare, Allocator>::const_iterator>
+	map<Key, T, Compare, Allocator>::equal_range(const key_type& k) const {
+		typedef ft::pair<const_iterator, const_iterator> _p;
 
 		const_iterator	res = this->end();
 		map_node<key_type, mapped_type>	*r = this->_root;
@@ -691,9 +691,9 @@ namespace ft {
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	ft::Pair<typename Map<Key, T, Compare, Allocator>::iterator, typename Map<Key, T, Compare, Allocator>::iterator>
-	Map<Key, T, Compare, Allocator>::equal_range(const key_type& k) {
-		typedef ft::Pair<iterator, iterator> _p;
+	ft::pair<typename map<Key, T, Compare, Allocator>::iterator, typename map<Key, T, Compare, Allocator>::iterator>
+	map<Key, T, Compare, Allocator>::equal_range(const key_type& k) {
+		typedef ft::pair<iterator, iterator> _p;
 
 		iterator	res = this->end();
 		map_node<key_type, mapped_type>	*r = this->_root;
@@ -716,8 +716,8 @@ namespace ft {
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
-	typename Map<Key, T, Compare, Allocator>::allocator_type
-	Map<Key, T, Compare, Allocator>::get_allocator() const {
+	typename map<Key, T, Compare, Allocator>::allocator_type
+	map<Key, T, Compare, Allocator>::get_allocator() const {
 		return (allocator_type());
 	}
 }
